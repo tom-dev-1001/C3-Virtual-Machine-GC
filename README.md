@@ -1,4 +1,5 @@
-C3 Virtual Machine & Garbage Collector
+
+**C3 Virtual Machine & Garbage Collector**
 
 This project is an experimental virtual machine and runtime system written in C3, built to explore manual memory management, garbage collection, stack simulation, and low-level execution models.
 
