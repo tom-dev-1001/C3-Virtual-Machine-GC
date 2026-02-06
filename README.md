@@ -76,7 +76,7 @@ The GC system:
 
 Garbage collection can be triggered manually or automatically when heap thresholds are exceeded.
 
-Raw Bit-Level Data Access
+**Raw Bit-Level Data Access**
 
 Primitive values are stored as raw bytes.
 
