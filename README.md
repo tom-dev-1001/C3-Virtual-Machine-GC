@@ -170,7 +170,7 @@ This validates:
 
 The test repeatedly constructs "Hello, World!" using heap-allocated character objects, forcing continuous allocation and cleanup.
 
-Design Goals
+**Design Goals**
 
 This project prioritizes:
 - Correctness over convenience
