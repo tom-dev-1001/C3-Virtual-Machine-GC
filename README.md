@@ -83,13 +83,20 @@ Primitive values are stored as raw bytes.
 Example: reading a 32-bit integer from memory:
 ```C
 fn int? Object.getI32Value(Object* self) {
-    if (self.data == null) return DATA_IS_NULL?;
-    if (self.size_in_bytes != 4) return TYPE_MISMATCH?;
+
+    if (self.data == null) {
+        return DATA_IS_NULL?;
+    }
+    if (self.size_in_bytes != 4) {
+        return TYPE_MISMATCH?;
+    }
 
     uint result = 0;
+
     for (usz i = 0; i < 4; i++) {
         result |= (uint)(self.data[i]) << (i * 8);
     }
+
     return (int)(result);
 }
 ```
@@ -97,13 +104,21 @@ fn int? Object.getI32Value(Object* self) {
 Writing:
 ```C
 fn void? Object.setI32Value(Object* self, int value) {
-    if (self.data == null) return DATA_IS_NULL?;
-    if (self.size_in_bytes != 4) return TYPE_MISMATCH?;
+    if (self.data == null) {
+        return DATA_IS_NULL?;
+    }
+    if (self.size_in_bytes != 4) {
+        return TYPE_MISMATCH?;
+    }
 
+    //casting to keep all the bits the same
     uint unsigned_value = (uint)(value);
 
     for (usz i = 0; i < 4; i++) {
-        self.data[i] = (char)((unsigned_value >> (i * 8)) & 255);
+        usz shift_offset = i * 8;
+        //bits 111111110000000...
+        usz bit_mask = 255;
+        self.data[i] = (char)((ulong)(unsigned_value >> shift_offset) & bit_mask);
     }
 }
 ```
